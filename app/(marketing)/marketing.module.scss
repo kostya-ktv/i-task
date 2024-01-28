@@ -1,0 +1,24 @@
+.marketingPage {
+  @apply flex items-center justify-center flex-col;
+  .topBox {
+    @apply flex items-center justify-center flex-col;
+  }
+  .topBadge {
+    @apply mb-4 flex items-center border shadow-sm p-4 font-woff bg-emerald-600 text-white rounded-full uppercase;
+  }
+  .topBadgeIcon {
+    @apply h-6 w-6 mr-2 text-yellow-400;
+  }
+  .titleBox {
+    @apply text-4xl md:text-6xl text-center mb-6 font-medium;
+    .titleBoxName {
+      @apply underline-offset-4 font-semibold text-white italic;
+    }  
+  }
+  .mainBadge {
+    @apply text-3xl md:text-6xl bg-gradient-to-t from-fuchsia-800 font-woff to-red-500 text-white px-4 p-2 rounded-md pb-4 w-fit;
+  }
+  .descriptionBox {
+    @apply text-sm md:text-xl mt-4 text-neutral-400 max-w-xs md:max-w-2xl text-center mx-auto;
+  }
+}
