@@ -5,8 +5,8 @@
   @apply flex items-center gap-x-4;
 }
 .navbarCreateBtn {
-  @apply rounded-sm h-auto py-1.5 px-2;
+  @apply rounded-sm;
 }
 .navbarOrgBox {
-  @apply ml-auto flex items-center gap-x-2;
+  @apply ml-auto flex items-center gap-x-2 ;
 }

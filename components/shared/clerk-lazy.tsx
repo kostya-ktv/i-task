@@ -1,12 +1,14 @@
 import { ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
 import { Spinner } from "@/components/shared";
 
-export const ClerkLazy: React.FC<React.PropsWithChildren> = ({ children }) => {
+interface Props {
+  children?: React.ReactNode;
+  loader?: React.ReactNode;
+}
+export const ClerkLazy: React.FC<Props> = ({ children, loader }) => {
   return (
     <>
-      <ClerkLoading>
-        <Spinner />
-      </ClerkLoading>
+      <ClerkLoading>{loader || <Spinner />}</ClerkLoading>
       <ClerkLoaded>{children}</ClerkLoaded>
     </>
   );

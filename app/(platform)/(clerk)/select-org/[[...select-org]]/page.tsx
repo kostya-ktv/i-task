@@ -1,4 +1,5 @@
 import { ClerkLazy } from "@/components/shared";
+import { APP_ROUTES } from "@/lib/constants";
 import { OrganizationList } from "@clerk/nextjs";
 
 const OrganizationPage = () => {
@@ -7,8 +8,8 @@ const OrganizationPage = () => {
       <OrganizationList
         hidePersonal
         //@ts-ignore
-        afterSelectOrganizationUrl="/organization/:slug"
-        afterCreateOrganizationUrl="/organization/:id"
+        afterSelectOrganizationUrl={APP_ROUTES.orgId}
+        afterCreateOrganizationUrl={APP_ROUTES.orgId}
       />
     </ClerkLazy>
   );
