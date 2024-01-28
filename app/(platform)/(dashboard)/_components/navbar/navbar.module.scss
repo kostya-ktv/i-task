@@ -1,0 +1,12 @@
+.navbar {
+  @apply fixed z-50 top-0 w-full h-14 px-4 bg-slate-950 flex items-center;
+}
+.navbarCreate {
+  @apply flex items-center gap-x-4;
+}
+.navbarCreateBtn {
+  @apply rounded-sm h-auto py-1.5 px-2;
+}
+.navbarOrgBox {
+  @apply ml-auto flex items-center gap-x-2;
+}

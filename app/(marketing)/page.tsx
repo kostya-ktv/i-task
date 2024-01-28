@@ -2,6 +2,7 @@ import { Button } from "@/components/ui";
 import { SparkleIcon } from "lucide-react";
 import Link from "next/link";
 import styles from "./marketing.module.scss";
+import { LogoImg } from "@/components/shared";
 
 const MarketingPage = () => {
   return (
@@ -16,15 +17,16 @@ const MarketingPage = () => {
         </h1>
         <div className={styles.mainBadge}>work forward.</div>
       </div>
-      <div
-        className={styles.descriptionBox}
-      >
+      <div className={styles.descriptionBox}>
         {`Collaborate seamlessly, oversee projects efficiently, and elevate
         productivity. It all with `}
         <strong className="text-white">iTask</strong>
       </div>
-      <Button className="mt-6" asChild size="lg" variant="secondary">
-        <Link href="/sign-up">Get iTask now</Link>
+      <Button asChild size="lg" variant="secondary">
+        <Link href="/sign-up">
+          Join to <LogoImg />
+          iTask
+        </Link>
       </Button>
     </div>
   );
