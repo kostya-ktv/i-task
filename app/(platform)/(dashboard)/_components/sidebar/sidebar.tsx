@@ -1,17 +1,13 @@
 "use client";
 
-import { Button, Card, Skeleton } from "@/components/ui";
-import { APP_ROUTES } from "@/lib/constants";
+import { Card } from "@/components/ui";
 import { useOrganization, useOrganizationList } from "@clerk/nextjs";
 import { Accordion } from "@radix-ui/react-accordion";
-import { PlusIcon } from "lucide-react";
-import Link from "next/link";
 import { useLocalStorage } from "usehooks-ts";
 import { SidebarItem } from "./sidebar-item";
 import { Organization } from "@/lib/types";
 import { useCallback } from "react";
-import styles from "./sidebar.module.scss";
-import { SideBarSkeleton } from "./sidebar-skeleton";
+import { SidebarComponents } from "./sidebar.util";
 
 interface Props {
   storageKey?: string;
@@ -50,23 +46,10 @@ const Sidebar: React.FC<Props> = (props) => {
   );
 
   return isLoading ? (
-    <SideBarSkeleton />
+    <SidebarComponents.SideBarSkeleton />
   ) : (
     <Card>
-      <div className={styles.sidebar}>
-        <span className="pl-4">Workspaces</span>
-        <Button
-          asChild
-          type="button"
-          variant="ghost"
-          size="icon"
-          className="ml-auto"
-        >
-          <Link href={APP_ROUTES.selectOrg}>
-            <PlusIcon className="h-4 w-4" />
-          </Link>
-        </Button>
-      </div>
+      <SidebarComponents.SelectOrgButton />
       <Accordion type="multiple" defaultValue={defaultAccordion}>
         {userMemberships.data?.map(({ organization }) => {
           const orgID = organization.id;

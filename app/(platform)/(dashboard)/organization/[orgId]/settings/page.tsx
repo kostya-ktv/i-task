@@ -19,8 +19,8 @@ const SettingsPage = () => {
                 border: "none",
               },
               card: {
-                display: "flex",
-                flexDirection: "column",
+                // display: "flex",
+                // flexDirection: "column",
                 border: "1px solid #e2e2e2",
                 boxShadow: "none",
                 margin: "0",
