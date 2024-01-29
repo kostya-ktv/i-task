@@ -4,9 +4,9 @@
 .navbarCreate {
   @apply flex items-center gap-x-4;
 }
-.navbarCreateBtn {
-  @apply rounded-sm;
+.skeleton {
+  @apply w-[210px] ml-auto h-[32px] rounded-full;
 }
 .navbarOrgBox {
-  @apply ml-auto flex items-center gap-x-2 ;
+  @apply ml-auto flex items-center gap-x-2 px-2 py-[3px] rounded-md bg-white;
 }

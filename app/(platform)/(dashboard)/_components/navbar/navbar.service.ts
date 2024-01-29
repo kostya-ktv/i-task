@@ -6,9 +6,6 @@ export namespace DashboardNavbar {
         alignItems: "center",
         justifyContent: "center",
         color: "GrayText",
-        backgroundColor: "white",
-        padding: "3px 8px",
-        borderRadius: "5px",
       },
     },
   };

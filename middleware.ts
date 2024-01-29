@@ -10,11 +10,11 @@ export default authMiddleware({
   afterAuth(auth, req) {
     const requestURL = req.url;
     const { userId, isPublicRoute, orgId } = auth;
-    if (userId && isPublicRoute) {
-      const path = orgId ? APP_ROUTES.toOrgWithId(orgId) : APP_ROUTES.selectOrg;
-      const orgSelectionURL = new URL(path, requestURL);
-      return NextResponse.redirect(orgSelectionURL);
-    }
+    // if (userId && isPublicRoute) {
+    //   const path = orgId ? APP_ROUTES.toOrgWithId(orgId) : APP_ROUTES.selectOrg;
+    //   const orgSelectionURL = new URL(path, requestURL);
+    //   return NextResponse.redirect(orgSelectionURL);
+    // }
 
     if (!userId && !isPublicRoute) {
       return redirectToSignIn({

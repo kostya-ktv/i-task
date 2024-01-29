@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 import { fontInit } from "@/styles/fonts";
 import { SITE_DATA } from "@/config/meta";
+import AppProvider from "@/providers";
 
 export const metadata: Metadata = {
   title: {
@@ -18,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={fontInit}>
-      <body className="font-poppins h-screen bg-slate-900">{children}</body>
+      <AppProvider>
+        <body className="font-poppins h-screen ">{children}</body>
+      </AppProvider>
     </html>
   );
 }
