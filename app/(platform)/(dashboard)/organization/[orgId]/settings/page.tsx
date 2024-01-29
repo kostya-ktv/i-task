@@ -13,6 +13,7 @@ const SettingsPage = () => {
             elements: {
               rootBox: {
                 boxShadow: "none",
+                maxWidth: "100%",
               },
               navbar: {
                 border: "none",
