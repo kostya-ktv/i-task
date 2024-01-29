@@ -1,4 +1,6 @@
+import { TitlePage } from "@/components/shared";
+
 const OrganizationIDPage = () => {
-  return <div>ORG ID PAGE</div>;
+  return <TitlePage title="Boards" />;
 };
 export default OrganizationIDPage;

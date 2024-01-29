@@ -1,12 +1,15 @@
 .navbar {
+  img {
+    max-width: unset;
+  }
   @apply fixed z-50 top-0 w-full h-14 px-4 bg-slate-950 flex items-center;
 }
 .navbarCreate {
-  @apply flex items-center gap-x-4;
+  @apply flex items-center gap-x-3;
 }
 .skeleton {
   @apply w-[210px] ml-auto h-[32px] rounded-full;
 }
 .navbarOrgBox {
-  @apply ml-auto flex items-center gap-x-2 px-2 py-[3px] rounded-md bg-white;
+  @apply ml-auto flex items-center gap-x-2 px-2 h-[36px] rounded-md bg-white;
 }

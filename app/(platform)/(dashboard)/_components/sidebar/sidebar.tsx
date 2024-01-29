@@ -1,13 +1,13 @@
 "use client";
 
-import { Button, Card } from "@/components/ui";
+import { Button, Card, Skeleton } from "@/components/ui";
 import { APP_ROUTES } from "@/lib/constants";
 import { useOrganization, useOrganizationList } from "@clerk/nextjs";
 import { Accordion } from "@radix-ui/react-accordion";
 import { PlusIcon } from "lucide-react";
 import Link from "next/link";
 import { useLocalStorage } from "usehooks-ts";
-import { NavItem } from "./nav-item";
+import { SidebarItem } from "./sidebar-item";
 import { Organization } from "@/lib/types";
 import { useCallback } from "react";
 import styles from "./sidebar.module.scss";
@@ -73,7 +73,7 @@ const Sidebar: React.FC<Props> = (props) => {
           const isActive = currentOrganization?.id === orgID;
           const isExpanded = expanded[orgID];
           return (
-            <NavItem
+            <SidebarItem
               key={orgID}
               isActive={isActive}
               isExpanded={isExpanded}

@@ -20,7 +20,7 @@ interface Props {
   onExpand: (id: string) => void;
 }
 
-export const NavItem: React.FC<Props> = (props) => {
+export const SidebarItem: React.FC<Props> = (props) => {
   const { onExpand, organization, isActive, isExpanded } = props;
   const router = useRouter();
   const pathname = usePathname();

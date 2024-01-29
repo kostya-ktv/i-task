@@ -1,22 +1,22 @@
 import { ClerkLazy, LogoLink } from "@/components/shared";
 import styles from "./navbar.module.scss";
-import { Button, Skeleton } from "@/components/ui";
-import { FilePlusIcon } from "lucide-react";
+import { Skeleton } from "@/components/ui";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import { APP_ROUTES } from "@/lib/constants";
 import { DashboardNavbar } from "./navbar.service";
 import { OrganizationControl } from "./org-control";
+import MobileSidebar from "../mobile-sidebar/mobile-sidebar";
+import { CreateBtn } from "../create-btn";
 
 export const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <OrganizationControl />
+
       <div className={styles.navbarCreate}>
-        <LogoLink showLogoOnMobile />
-        <Button size="sm" variant="outline">
-          <FilePlusIcon className="h-4" />
-          <span className="hidden md:block">Create</span>
-        </Button>
+        <MobileSidebar />
+        <LogoLink />
+        <CreateBtn />
       </div>
 
       <ClerkLazy loader={<Skeleton className={styles.skeleton} />}>
