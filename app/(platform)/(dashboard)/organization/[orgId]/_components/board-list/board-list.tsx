@@ -6,8 +6,9 @@ import { redirect } from "next/navigation";
 import { APP_ROUTES } from "@/lib/constants";
 import { BoardItem } from "./board-item";
 import { db } from "@/lib/prisma";
+import { Skeleton } from "@/components/ui";
 
-export const BoardList = async () => {
+const BoardList = async () => {
   const { orgId } = auth();
   if (!orgId) {
     redirect(APP_ROUTES.selectOrg);
@@ -36,3 +37,16 @@ export const BoardList = async () => {
     </div>
   );
 };
+
+const BoardListSkeleton = () => (
+  <div className={styles.boardList}>
+    <div className={styles.newBoardBox}>
+      {Array(5)
+        .fill("*")
+        .map((el) => (
+          <Skeleton className={styles.boardItem} key={el + 1} />
+        ))}
+    </div>
+  </div>
+);
+export { BoardListSkeleton, BoardList };

@@ -1,7 +1,11 @@
 import { TitlePage } from "@/components/shared";
 import { Info } from "./_components/info/info";
 import { Separator } from "@/components/ui";
-import { BoardList } from "./_components/board-list/board-list";
+import {
+  BoardList,
+  BoardListSkeleton,
+} from "./_components/board-list/board-list";
+import { Suspense } from "react";
 
 const OrganizationIDPage = () => {
   return (
@@ -10,7 +14,9 @@ const OrganizationIDPage = () => {
       <Info />
       <Separator className="my-4" />
       <div className="px-2 md:px-4">
-        <BoardList />
+        <Suspense fallback={<BoardListSkeleton />}>
+          <BoardList />
+        </Suspense>
       </div>
     </>
   );
