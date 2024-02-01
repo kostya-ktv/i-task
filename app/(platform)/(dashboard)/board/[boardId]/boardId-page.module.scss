@@ -1,0 +1,9 @@
+.boardIdLayout {
+  @apply relative h-full bg-no-repeat bg-cover bg-center;
+}
+.boardIdLayoutMain {
+  @apply relative pt-28 h-full;
+}
+.boardIdLayoutBGMask {
+  @apply absolute w-full h-full bg-black/25;
+}
