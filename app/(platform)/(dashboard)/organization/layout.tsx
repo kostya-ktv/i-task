@@ -4,7 +4,7 @@ import Sidebar from "../_components/sidebar/sidebar";
 const OrganizationLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <div
-      className="py-20 px-4 max-w-6x
+      className="py-20 px-4 max-w-6xl
   2xl:max-w-screen-xl mx-auto"
     >
       <div className="flex gap-x-7">
