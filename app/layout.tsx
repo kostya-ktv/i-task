@@ -19,9 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={fontInit}>
-      <AppProvider>
-        <body className="font-poppins h-screen ">{children}</body>
-      </AppProvider>
+      <body className="font-poppins h-screen ">
+        <AppProvider>{children} </AppProvider>
+      </body>
     </html>
   );
 }

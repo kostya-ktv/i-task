@@ -4,3 +4,6 @@ export * from "./accordion";
 export * from "./separator";
 export * from "./card";
 export * from "./sheet";
+export * from "./tooltip";
+export * from "./popover";
+export * from "./input";

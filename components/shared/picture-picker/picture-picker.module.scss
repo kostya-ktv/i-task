@@ -1,0 +1,26 @@
+.picturePicker {
+  @apply relative grid grid-cols-3 gap-2 mb-2;
+}
+.picturePickerImgBox {
+  @apply cursor-pointer relative aspect-video transition hover:opacity-75 bg-muted;
+  img {
+      @apply object-cover rounded-sm;
+    }
+}
+.picturePickerImgBoxSelected {
+  @apply absolute inset-y-0 h-full w-full bg-white/70 flex items-center justify-center;
+}
+.picturePickerImgBoxPending {
+  @apply opacity-50 hover:opacity-50 cursor-auto;
+ 
+}
+.picturePickerImgBoxLink {
+  @apply flex flex-col  opacity-0 absolute bottom-0 w-full text-[10px] truncate text-white  p-[2px] bg-black/55;
+}
+
+.picturePickerSkeletonBox {
+  @apply p-6 flex items-center justify-center;
+}
+.picturePickerSkeletonBoxIcon {
+  @apply h-6 w-6 text-sky-500 animate-spin;
+}

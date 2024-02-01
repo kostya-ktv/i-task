@@ -7,7 +7,7 @@
     @apply mb-4 flex items-center border shadow-sm p-4 font-woff bg-emerald-600 text-white rounded-full uppercase;
   }
   .topBadgeIcon {
-    @apply h-6 w-6 mr-2 text-yellow-400;
+    @apply h-6 w-6 mr-2 text-yellow-400 animate-pulse duration-700;
   }
   .titleBox {
     @apply text-4xl md:text-6xl text-center mb-6 font-medium;

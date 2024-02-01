@@ -1,0 +1,18 @@
+.info {
+  @apply flex items-center gap-x-4;
+  .infoImgBox {
+    @apply w-[60px] h-[60px] relative;
+    img {
+      @apply rounded-md object-cover;
+    }
+  }
+  .infoCredit {
+    @apply flex items-center text-xs text-muted-foreground;
+  }
+  .infoCreditTitle {
+    @apply font-semibold text-xl;
+  }
+  .infoCreditIcon {
+    @apply h-4 mr-1;
+  }
+}
