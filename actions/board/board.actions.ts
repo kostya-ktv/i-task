@@ -1,11 +1,11 @@
 "use server";
 import { Board } from "@prisma/client";
 import { auth } from "@clerk/nextjs";
-import { DB_CLIENT } from "@/lib/db.service";
 import { revalidatePath } from "next/cache";
 import { APP_ROUTES } from "@/lib/constants";
 import { CreateBoardSchemaType } from "./board.schema";
 import { redirect } from "next/navigation";
+import { db } from "@/lib/prisma";
 
 export const createBoard = async (
   { title, image }: CreateBoardSchemaType,
@@ -23,14 +23,14 @@ export const createBoard = async (
     throw Error("Missing image details to create Board");
   }
 
-  const [imageId, imageThumbUrl, imageFullUrl, imageLinksHTML, imageUserName] =
+  const [imageId, imageThumbUrl, imageFullUrl, imageLinkHTML, imageUserName] =
     imageSet;
-  const newBoard = await DB_CLIENT.board.create({
+  const newBoard = await db.board.create({
     data: {
       title,
       imageFullUrl,
       imageId,
-      imageLinksHTML,
+      imageLinkHTML,
       imageThumbUrl,
       imageUserName,
       orgId,
