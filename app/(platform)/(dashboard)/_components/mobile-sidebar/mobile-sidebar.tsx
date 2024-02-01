@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { Button, Sheet, SheetContent } from "@/components/ui";
 import Sidebar from "../sidebar/sidebar";
 import { LogoImg } from "@/components/shared";
-import { CreateBoardBtn } from "../create-board-btn";
+import { CreateBoardBtnPopoverSidebar } from "../board-new-btn.popover";
 
 export const MobileSidebar = () => {
   const { onClose, onOpen, isOpen } = useMobileSidebar();
@@ -34,7 +34,7 @@ export const MobileSidebar = () => {
             <LogoImg />
             iTask
           </h2>
-          <CreateBoardBtn />
+          <CreateBoardBtnPopoverSidebar />
           <Sidebar storageKey="k-sb-mb-state" />
         </SheetContent>
       </Sheet>

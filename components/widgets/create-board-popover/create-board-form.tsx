@@ -1,5 +1,5 @@
 "use client";
-import styles from "./board-list.module.scss";
+import styles from "./create-board-popover.module.scss";
 import * as BoardAPI from "@/actions/board";
 import { PicturePicker } from "@/components/shared";
 import { Button, Input, PopoverClose } from "@/components/ui";
@@ -16,7 +16,7 @@ import { useForm, zodResolver } from "@/lib/forms";
 import { XIcon } from "lucide-react";
 import { useRef } from "react";
 
-export const BoardListForm = () => {
+export const CreateBoardForm = () => {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const { toast } = useToast();
   const form = useForm<BoardAPI.CreateBoardSchemaType>({

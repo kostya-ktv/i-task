@@ -6,7 +6,7 @@ import { APP_ROUTES } from "@/lib/constants";
 import { DashboardNavbar } from "./navbar.service";
 import { OrganizationControl } from "./org-control";
 import MobileSidebar from "../mobile-sidebar/mobile-sidebar";
-import { CreateBoardBtn } from "../create-board-btn";
+import { CreateBoardBtnPopoverSidebar } from "../board-new-btn.popover";
 
 export const Navbar = () => {
   return (
@@ -16,7 +16,7 @@ export const Navbar = () => {
       <div className={styles.navbarCreate}>
         <MobileSidebar />
         <LogoLink />
-        <CreateBoardBtn className="hidden md:flex" />
+        <CreateBoardBtnPopoverSidebar className="hidden md:flex" />
       </div>
 
       <ClerkLazy loader={<Skeleton className={styles.skeleton} />}>

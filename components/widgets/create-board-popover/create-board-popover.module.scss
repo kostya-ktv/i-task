@@ -1,0 +1,19 @@
+.popoverForm {
+  @apply space-y-3 flex flex-col;
+
+  .popoverFormTitle {
+    @apply text-center w-full text-sm mb-3;
+  }
+
+  label {
+    @apply font-semibold;
+  }
+}
+
+.popoverCloseBtn {
+  @apply absolute p-2 top-2 right-2 h-auto w-auto text-neutral-600;
+
+  .popoverCloseBtnIcon {
+    @apply h-4 w-4;
+  }
+}
