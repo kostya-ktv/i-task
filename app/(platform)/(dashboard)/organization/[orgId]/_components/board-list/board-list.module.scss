@@ -25,3 +25,12 @@
   }
   
 }
+.boardItem {
+  @apply relative aspect-video bg-no-repeat bg-center bg-cover bg-sky-700 rounded-sm h-full w-full p-2 overflow-hidden;
+}
+.boardItemTitle {
+  @apply w-min relative bg-black/30 rounded-md px-1 hover:underline font-semibold text-white text-sm;
+}
+.boardItemMask {
+  @apply absolute inset-0 bg-black/10  transition;
+}

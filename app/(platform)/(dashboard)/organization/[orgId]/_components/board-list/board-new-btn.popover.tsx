@@ -5,7 +5,7 @@ import { CreateBoardPopover } from "@/components/widgets";
 
 export const NewBoardBtnPopover = () => {
   return (
-    <div className={styles.newBoardBox}>
+    
       <CreateBoardPopover>
         <div className={styles.newBoardContainer}>
           <p>Create new board</p>
@@ -19,6 +19,6 @@ export const NewBoardBtnPopover = () => {
           </Hint>
         </div>
       </CreateBoardPopover>
-    </div>
+   
   );
 };

@@ -27,10 +27,12 @@ export const BoardList = async () => {
         Your boards
       </div>
 
-      <NewBoardBtnPopover />
-      {boards.map((board) => (
-        <BoardItem board={board} key={board.id} />
-      ))}
+      <div className={styles.newBoardBox}>
+        {boards.map((board) => (
+          <BoardItem board={board} key={board.id} />
+        ))}
+        <NewBoardBtnPopover />
+      </div>
     </div>
   );
 };
