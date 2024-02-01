@@ -3,12 +3,9 @@ import { Board } from "@prisma/client";
 import { auth } from "@clerk/nextjs";
 import { revalidatePath } from "next/cache";
 import { APP_ROUTES } from "@/lib/constants";
-import {
-  ChangeBoardTitleSchemaType,
-  CreateBoardSchemaType,
-} from "./board.schema";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/prisma";
+import { CreateBoardSchemaType } from ".";
 
 export const createBoard = async (
   { title, image }: CreateBoardSchemaType,
@@ -44,19 +41,4 @@ export const createBoard = async (
     redirect(APP_ROUTES.toBoardWithId(newBoard.id));
   }
   return newBoard;
-};
-
-export const changeBoardTitle = async (
-  value: ChangeBoardTitleSchemaType,
-  boardId: Board["id"]
-) => {
-  await db.board.update({
-    where: {
-      id: boardId,
-    },
-    data: {
-      title: value.title,
-    },
-  })
-  revalidatePath(APP_ROUTES.toBoardWithId(boardId))
 };

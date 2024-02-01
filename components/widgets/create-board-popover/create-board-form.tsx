@@ -1,6 +1,10 @@
 "use client";
+import {
+  CreateBoardSchema,
+  CreateBoardSchemaType,
+  createBoard,
+} from "@/actions/board";
 import styles from "./create-board-popover.module.scss";
-import * as BoardAPI from "@/actions/board";
 import { PicturePicker } from "@/components/shared";
 import { Button, Input, PopoverClose } from "@/components/ui";
 import {
@@ -19,16 +23,16 @@ import { useRef } from "react";
 export const CreateBoardForm = () => {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const { toast } = useToast();
-  const form = useForm<BoardAPI.CreateBoardSchemaType>({
-    resolver: zodResolver(BoardAPI.CreateBoardSchema),
+  const form = useForm<CreateBoardSchemaType>({
+    resolver: zodResolver(CreateBoardSchema),
     defaultValues: {
       title: "",
       image: "",
     },
   });
   const isLoadingForm = form.formState.isSubmitting || form.formState.isLoading;
-  const onSubmit = async (values: BoardAPI.CreateBoardSchemaType) => {
-    await BoardAPI.createBoard({ ...values }, true)
+  const onSubmit = async (values: CreateBoardSchemaType) => {
+    await createBoard({ ...values }, true)
       .then(() => {
         if (closeButtonRef.current) {
           closeButtonRef.current.click();
