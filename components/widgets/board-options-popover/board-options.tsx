@@ -56,11 +56,12 @@ export const BoardOptions: React.FC<Props> = ({ id }) => {
         </div>
         <Button
           isLoading={isLoading}
+          disabled={isLoading}
           onClick={() => handleDeleteBoard()}
           variant="ghost"
           className={styles.deleteBtn}
         >
-          Delete this board
+          <p className="text-red-600 text-xs">Delete board</p>
         </Button>
       </PopoverContent>
     </Popover>
