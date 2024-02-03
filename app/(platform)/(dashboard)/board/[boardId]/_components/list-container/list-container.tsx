@@ -11,7 +11,7 @@ export const ListContainer: React.FC<Props> = (props) => {
   const { boardId, data } = props;
   return (
     <ol className={styles.listContainer}>
-      <ListWrapper/>
+      <ListWrapper boardId={boardId} />
       <div className="flex-shrink-0 w-1" />
     </ol>
   );

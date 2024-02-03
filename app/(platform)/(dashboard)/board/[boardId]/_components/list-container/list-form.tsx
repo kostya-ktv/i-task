@@ -1,32 +1,73 @@
 "use client";
 import styles from "./list-container.module.scss";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import { useForm } from "react-hook-form";
+import { useForm, zodResolver } from "@/lib/forms";
 import { Button, Input } from "@/components/ui";
 import { ElementRef, useRef } from "react";
 import { useOnClickOutside } from "usehooks-ts";
 import { useEscape } from "@/hooks";
+import {
+  CreateBoardListSchema,
+  CreateBoardListSchemaType,
+  createBoardList,
+} from "@/actions/board";
+import { Board } from "@prisma/client";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 interface Props {
   closeEditing: () => void;
+  boardId: Board["id"];
 }
-export const ListForm: React.FC<Props> = ({ closeEditing }) => {
+export const ListForm: React.FC<Props> = ({ closeEditing, boardId }) => {
   const formRef = useRef<ElementRef<"form">>(null);
+  const router = useRouter();
+  const { toast } = useToast();
+  const form = useForm<CreateBoardListSchemaType>({
+    resolver: zodResolver(CreateBoardListSchema),
+    defaultValues: {
+      boardId,
+      title: "",
+    },
+  });
+  const isSubmitting = form.formState.isSubmitting;
 
-  const form = useForm();
-
+  const onSubmitForm = async (values: CreateBoardListSchemaType) => {
+    await createBoardList(values)
+      .then(() => {
+        toast({
+          title: `List ${values.title}`,
+          description: "Successfully created",
+          variant: "success",
+        });
+        closeEditing();
+        router.refresh();
+      })
+      .catch(() => {
+        toast({
+          title: `Error`,
+          description: "list not created",
+          variant: "destructive",
+        });
+      });
+  };
   useOnClickOutside(formRef, closeEditing);
   useEscape(closeEditing);
   return (
     <Form {...form}>
-      <form ref={formRef} className={styles.listForm}>
+      <form
+        ref={formRef}
+        className={styles.listForm}
+        onSubmit={form.handleSubmit(onSubmitForm)}
+      >
         <FormField
-          name=""
+          name="title"
           control={form.control}
           render={({ field }) => (
             <FormItem>
               <FormControl>
                 <Input
+                  disabled={isSubmitting}
                   autoFocus
                   placeholder="Enter list title"
                   className={styles.listFormInput}
@@ -36,11 +77,18 @@ export const ListForm: React.FC<Props> = ({ closeEditing }) => {
             </FormItem>
           )}
         />
-        <div className="grid grid-cols-[2fr_1fr] gap-x-1">
-          <Button size="sm" variant="blue">
+        <div className={styles.listFormCancelBtn}>
+          <Button
+            disabled={isSubmitting}
+            isLoading={isSubmitting}
+            type="submit"
+            size="sm"
+            variant="blue"
+          >
             Add
           </Button>
           <Button
+            disabled={isSubmitting}
             size="sm"
             variant="ghost"
             type="button"

@@ -4,13 +4,17 @@ import styles from "./list-container.module.scss";
 import { ListForm } from "./list-form";
 import { PlusIcon } from "lucide-react";
 import { Button } from "@/components/ui";
+import { Board } from "@prisma/client";
 
-export const ListWrapper = () => {
+export const ListWrapper: React.FC<{ boardId: Board["id"] }> = ({
+  boardId,
+}) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
+
   return (
     <div className={styles.listWrapper}>
       {isEditing ? (
-        <ListForm closeEditing={() => setIsEditing(false)} />
+        <ListForm boardId={boardId} closeEditing={() => setIsEditing(false)} />
       ) : (
         <Button
           onClick={() => setIsEditing(true)}
