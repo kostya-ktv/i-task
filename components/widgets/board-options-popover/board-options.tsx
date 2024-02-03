@@ -43,7 +43,7 @@ export const BoardOptions: React.FC<Props> = ({ id }) => {
       </PopoverTrigger>
       <PopoverContent className={styles.content} side="bottom" align="start">
         <div className={styles.contentBox}>
-          Actions
+          Settings
           <PopoverClose asChild>
             <Button
               disabled={isLoading}

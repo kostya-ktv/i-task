@@ -1,0 +1,15 @@
+.listOptionsContent {
+  @apply px-0 pt-3 pb-3;
+}
+.listOptionsContentTitle {
+  @apply text-sm font-medium text-center text-stone-600 pb-4;
+}
+.listOptionsCloseBtn {
+  @apply h-auto w-auto p-2 absolute top-2 right-2 text-neutral-600;
+}
+.listOptionsCloseBtnIcon {
+  @apply w-4 h-4;
+}
+.listOptionsAddBtn {
+  @apply rounded-none font-normal text-sm w-full h-auto p-2 px-5 justify-start;
+}

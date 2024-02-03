@@ -1,5 +1,5 @@
 "use client";
-import styles from "./list-container.module.scss";
+import styles from "./new-list.module.scss";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { useForm, zodResolver } from "@/lib/forms";
 import { Button, Input } from "@/components/ui";
@@ -9,7 +9,7 @@ import { useEscape } from "@/hooks";
 import {
   CreateBoardListSchema,
   CreateBoardListSchemaType,
-  createBoardList,
+  createList,
 } from "@/actions/board";
 import { Board } from "@prisma/client";
 import { useToast } from "@/components/ui/use-toast";
@@ -33,7 +33,7 @@ export const ListForm: React.FC<Props> = ({ closeEditing, boardId }) => {
   const isSubmitting = form.formState.isSubmitting;
 
   const onSubmitForm = async (values: CreateBoardListSchemaType) => {
-    await createBoardList(values)
+    await createList(values)
       .then(() => {
         toast({
           title: `List ${values.title}`,
@@ -83,14 +83,14 @@ export const ListForm: React.FC<Props> = ({ closeEditing, boardId }) => {
             isLoading={isSubmitting}
             type="submit"
             size="sm"
-            variant="blue"
+            variant="secondary"
           >
             Add
           </Button>
           <Button
             disabled={isSubmitting}
             size="sm"
-            variant="ghost"
+            variant="transparent"
             type="button"
             onClick={closeEditing}
           >

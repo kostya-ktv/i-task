@@ -1,14 +1,14 @@
 "use server";
 
 import { auth } from "@clerk/nextjs";
-import { CreateBoardListSchemaType } from ".";
 import { db } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { APP_ROUTES } from "@/lib/constants";
 import { revalidatePath } from "next/cache";
 import { List } from "@prisma/client";
+import { CreateBoardListSchemaType } from "./list.schema";
 
-export const createBoardList = async (
+export const createList = async (
   values: CreateBoardListSchemaType
 ): Promise<List> => {
   const { orgId, userId } = auth();

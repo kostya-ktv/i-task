@@ -1,23 +1,13 @@
 import { z } from "@/lib/forms";
-export const TITLE_VALIDATION = z
-  .string({
-    required_error: "Title is required",
-    invalid_type_error: "Title must be string value",
-  })
-  .min(3, {
-    message: "Title is too short ",
-  })
-  .max(20, {
-    message: "Too long title",
-  });
+import { ValidationsSchemes } from "../util";
 
 export const ChangeBoardTitleSchema = z.object({
-  title: TITLE_VALIDATION,
+  title: ValidationsSchemes.TITLE_VALIDATION,
 });
 export type ChangeBoardTitleSchemaType = z.infer<typeof ChangeBoardTitleSchema>;
 
 export const CreateBoardSchema = z.object({
-  title: TITLE_VALIDATION,
+  title: ValidationsSchemes.TITLE_VALIDATION,
   image: z
     .string({
       required_error: "Picture is required",
@@ -26,9 +16,3 @@ export const CreateBoardSchema = z.object({
     .min(3, "Please select picture"),
 });
 export type CreateBoardSchemaType = z.infer<typeof CreateBoardSchema>;
-
-export const CreateBoardListSchema = z.object({
-  title: TITLE_VALIDATION,
-  boardId: z.string(),
-});
-export type CreateBoardListSchemaType = z.infer<typeof CreateBoardListSchema>;
