@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { ElementRef, useRef } from "react";
+import { useEscape } from "@/hooks";
 
 interface Props {
   data: Board;
@@ -55,7 +56,7 @@ export const BoardTitleForm: React.FC<Props> = ({ data }) => {
       isEditing.setFalse();
     }
   };
-
+  useEscape(onCancel);
   if (isEditing.value) {
     return (
       <Form {...form}>
