@@ -1,20 +1,18 @@
-
-  .icon {
-    @apply h-4 w-4;
-  }
-  .trigger {
-    @apply h-auto w-auto p-2;
-  }
-  .content {
-    @apply px-0 pt-3 pb-3;
-  }
-  .contentBox {
-    @apply text-sm font-medium text-center text-neutral-600 pb-4;
-  }
-  .deleteBtn {
-    @apply rounded-none w-full justify-start font-normal h-auto p-2 px-5 text-sm;
-  }
-  .contentBoxBtn {
-    @apply h-auto w-auto p-2 absolute top-2 right-2 text-neutral-700;
-  }
-
+.icon {
+  @apply h-4 w-4;
+}
+.trigger {
+  @apply h-auto w-auto p-2;
+}
+.content {
+  @apply px-0 pt-3 pb-3;
+}
+.contentBox {
+  @apply text-sm font-medium text-center text-neutral-600 pb-4;
+}
+.btn {
+  @apply text-sm rounded-none justify-start  w-full items-center gap-x-2 font-normal h-auto p-2 px-5;
+}
+.contentBoxBtn {
+  @apply h-auto w-auto p-2 absolute top-2 right-2 text-neutral-700;
+}

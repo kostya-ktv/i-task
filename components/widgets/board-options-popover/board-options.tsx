@@ -5,20 +5,32 @@ import {
   PopoverClose,
   PopoverContent,
   PopoverTrigger,
+  Separator,
 } from "@/components/ui";
 import { Board } from "@prisma/client";
-import { MoreHorizontalIcon, XIcon } from "lucide-react";
+import {
+  LogOutIcon,
+  MoreHorizontalIcon,
+  Trash2Icon,
+  XIcon,
+} from "lucide-react";
 import styles from "./board-options.module.scss";
 import { deleteBoard } from "@/actions/board/delete-board";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import { APP_ROUTES } from "@/lib/constants";
 
 interface Props {
-  id: Board["id"];
+  board: Board;
 }
-export const BoardOptions: React.FC<Props> = ({ id }) => {
+export const BoardOptions: React.FC<Props> = ({ board }) => {
+  const { id, orgId } = board;
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { toast } = useToast();
+  const router = useRouter();
+
   const handleDeleteBoard = async () => {
     setIsLoading(true);
     await deleteBoard(id)
@@ -57,11 +69,23 @@ export const BoardOptions: React.FC<Props> = ({ id }) => {
         <Button
           isLoading={isLoading}
           disabled={isLoading}
+          onClick={() => router.push(APP_ROUTES.toOrgWithId(orgId))}
+          variant="ghost"
+          className={styles.btn}
+        >
+          <LogOutIcon className={styles.icon} />
+          Back to boards
+        </Button>
+        <Separator />
+        <Button
+          isLoading={isLoading}
+          disabled={isLoading}
           onClick={() => handleDeleteBoard()}
           variant="ghost"
-          className={styles.deleteBtn}
+          className={cn(styles.btn, "text-red-600")}
         >
-          <p className="text-red-600 text-xs">Delete board</p>
+          <Trash2Icon className={styles.icon} />
+          Delete board
         </Button>
       </PopoverContent>
     </Popover>
