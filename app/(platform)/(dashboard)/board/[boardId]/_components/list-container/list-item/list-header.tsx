@@ -13,7 +13,7 @@ export const ListHeader: React.FC<Props> = ({ data }) => {
   return (
     <div className={styles.listHeader}>
       <ListEditableHeader data={data} />
-      <ListOptions data={data} onAddCard={() => {}}>
+      <ListOptions list={data} onAddCard={() => {}}>
         <Button size="icon" className="h-auto w-auto" variant="ghost">
           <MoreVerticalIcon className="w-4 h-4" />
         </Button>

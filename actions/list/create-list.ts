@@ -6,15 +6,16 @@ import { redirect } from "next/navigation";
 import { APP_ROUTES } from "@/lib/constants";
 import { revalidatePath } from "next/cache";
 import { List } from "@prisma/client";
-import { CreateBoardListSchemaType } from "./list.schema";
+import { CreateListSchemaType } from "./list.schema";
+import { UnauthorizedError } from "@/lib/exceptions";
 
 export const createList = async (
-  values: CreateBoardListSchemaType
+  values: CreateListSchemaType
 ): Promise<List> => {
   const { orgId, userId } = auth();
 
   if (!orgId || !userId) {
-    throw Error("Unauthorized");
+    throw new UnauthorizedError();
   }
 
   const board = await db.board.findUnique({

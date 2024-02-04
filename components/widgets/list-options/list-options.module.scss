@@ -1,15 +1,18 @@
 .listOptionsContent {
-  @apply px-0 pt-3 pb-3;
+  @apply px-0 pt-2 pb-0;
 }
 .listOptionsContentTitle {
-  @apply text-sm font-medium text-center text-stone-600 pb-4;
+  @apply text-sm font-medium text-center text-stone-600;
 }
 .listOptionsCloseBtn {
-  @apply h-auto w-auto p-2 absolute top-2 right-2 text-neutral-600;
+  @apply absolute top-0 right-0;
 }
 .listOptionsCloseBtnIcon {
   @apply w-4 h-4;
 }
-.listOptionsAddBtn {
-  @apply rounded-none font-normal text-sm w-full h-auto p-2 px-5 justify-start;
+.listOptionsBtn {
+  @apply rounded-none flex items-center gap-x-2 font-normal text-sm w-full h-auto p-2 px-5 justify-start;
+}
+.listIcon {
+  @apply w-4 h-4;
 }

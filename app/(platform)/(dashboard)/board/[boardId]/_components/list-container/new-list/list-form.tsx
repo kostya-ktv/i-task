@@ -6,14 +6,11 @@ import { Button, Input } from "@/components/ui";
 import { ElementRef, useRef } from "react";
 import { useOnClickOutside } from "usehooks-ts";
 import { useEscape } from "@/hooks";
-import {
-  CreateBoardListSchema,
-  CreateBoardListSchemaType,
-  createList,
-} from "@/actions/board";
+import { createList } from "@/actions/board";
 import { Board } from "@prisma/client";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
+import { CreateListSchema, CreateListSchemaType } from "@/actions/list";
 
 interface Props {
   closeEditing: () => void;
@@ -23,8 +20,8 @@ export const ListForm: React.FC<Props> = ({ closeEditing, boardId }) => {
   const formRef = useRef<ElementRef<"form">>(null);
   const router = useRouter();
   const { toast } = useToast();
-  const form = useForm<CreateBoardListSchemaType>({
-    resolver: zodResolver(CreateBoardListSchema),
+  const form = useForm<CreateListSchemaType>({
+    resolver: zodResolver(CreateListSchema),
     defaultValues: {
       boardId,
       title: "",
@@ -32,7 +29,7 @@ export const ListForm: React.FC<Props> = ({ closeEditing, boardId }) => {
   });
   const isSubmitting = form.formState.isSubmitting;
 
-  const onSubmitForm = async (values: CreateBoardListSchemaType) => {
+  const onSubmitForm = async (values: CreateListSchemaType) => {
     await createList(values)
       .then(() => {
         toast({

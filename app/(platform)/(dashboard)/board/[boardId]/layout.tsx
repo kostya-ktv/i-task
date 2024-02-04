@@ -46,10 +46,7 @@ const BoardIdLayout: React.FC<Props> = async ({ params, children }) => {
       style={{ backgroundImage: `url(${board.imageFullUrl})` }}
     >
       <div className={styles.boardIdLayoutBGMask} />
-
       <BoardNavbar board={board} />
-
-      <div className="absolute inset-0 bg-black/10" />
       <main className={styles.boardIdLayoutMain}>{children}</main>
     </div>
   );
