@@ -29,10 +29,7 @@ export const ListItem: React.FC<Props> = (props) => {
                 <ol
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  className={cn(
-                    styles.cardList,
-                    list.cards.length > 0 ? "mt-2" : "mt-0"
-                  )}
+                  className={cn(styles.cardList)}
                 >
                   {list.cards.map((card, cardIndex) => (
                     <CardItem cardIndex={cardIndex} key={card.id} card={card} />

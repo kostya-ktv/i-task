@@ -3,7 +3,7 @@ import { Button, Textarea } from "@/components/ui";
 import { useForm, zodResolver } from "@/lib/forms";
 import styles from "./card.module.scss";
 import { Board, List } from "@prisma/client";
-import { forwardRef, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { PlusIcon } from "lucide-react";
 import {
   Form,
@@ -27,7 +27,7 @@ interface Props {
   openEditing: () => void;
   closeEditing: () => void;
 }
-export const CardForm = forwardRef<HTMLTextAreaElement, Props>((props, ref) => {
+export const CardForm: React.FC<Props> = (props) => {
   const { closeEditing, openEditing, listId, isEditing, boardId } = props;
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { toast } = useToast();
@@ -55,7 +55,9 @@ export const CardForm = forwardRef<HTMLTextAreaElement, Props>((props, ref) => {
             title: "New card created",
           });
         })
-        .finally(() => setIsLoading(false));
+        .finally(() => {
+          setIsLoading(false);
+        });
     },
     [closeEditing, toast]
   );
@@ -118,5 +120,4 @@ export const CardForm = forwardRef<HTMLTextAreaElement, Props>((props, ref) => {
       </Button>
     </div>
   );
-});
-CardForm.displayName = "CardForm";
+};

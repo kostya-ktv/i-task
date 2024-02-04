@@ -3,19 +3,26 @@
   bg-[#f1f2f4] shadow-md  px-4 py-1.5 text-sm;
 }
 .cardList {
-  @apply mx-1 px-1 py-0.5 flex flex-col gap-y-2;
+  @apply py-0.5 flex flex-col gap-y-2;
 }
 .listHeader {
   @apply flex gap-x-2 w-full text-sm font-medium items-center justify-between 
   border-transparent;
 }
 .listHeaderInput {
-  @apply m-0 p-0 border-none  bg-transparent;
+  @apply m-0 px-1 border-none  bg-transparent;
 }
 .listHeaderInputErr {
   @apply absolute bg-black bottom-[-100%];
 }
 
 .listHeaderTitle {
-  @apply cursor-text hover:bg-black/5 py-1 rounded-md truncate;
+  @apply cursor-text hover:bg-black/10 font-semibold
+   py-2.5 px-1 rounded-md truncate;
+}
+.listHeaderMoreBtn {
+  @apply h-auto w-auto;
+}
+.listHeaderMoreBtn {
+  @apply w-4 h-4;
 }

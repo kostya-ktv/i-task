@@ -14,8 +14,12 @@ export const ListHeader: React.FC<Props> = ({ list, onAddCard }) => {
     <div className={styles.listHeader}>
       <ListEditableHeader list={list} />
       <ListOptions list={list} onAddCard={() => {}}>
-        <Button size="icon" className="h-auto w-auto" variant="ghost">
-          <MoreVerticalIcon className="w-4 h-4" />
+        <Button
+          size="icon"
+          className={styles.listHeaderMoreBtn}
+          variant="ghost"
+        >
+          <MoreVerticalIcon className={styles.listHeaderMoreBtnIcon} />
         </Button>
       </ListOptions>
     </div>

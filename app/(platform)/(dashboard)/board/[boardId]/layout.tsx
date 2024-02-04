@@ -26,9 +26,11 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: board?.title ?? defaultTitle,
   };
 }
+
 type Props = Params & {
   children: React.ReactNode;
 };
+
 const BoardIdLayout: React.FC<Props> = async ({ params, children }) => {
   const { orgId } = auth();
   if (!orgId) redirect(APP_ROUTES.selectOrg);
@@ -40,6 +42,7 @@ const BoardIdLayout: React.FC<Props> = async ({ params, children }) => {
     },
   });
   if (!board) notFound();
+
   return (
     <div
       className={styles.boardIdLayout}

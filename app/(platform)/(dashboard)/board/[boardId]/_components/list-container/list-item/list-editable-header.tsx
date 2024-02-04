@@ -59,7 +59,7 @@ export const ListEditableHeader: React.FC<Props> = ({ list }) => {
     <Form {...form}>
       <form
         ref={formRef}
-        className="relative"
+        className="relative p-0"
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <FormField
