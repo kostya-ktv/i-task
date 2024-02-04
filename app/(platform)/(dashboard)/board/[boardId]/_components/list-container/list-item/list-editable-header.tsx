@@ -21,25 +21,25 @@ import {
 } from "@/actions/list";
 
 interface Props {
-  data: List;
+  list: List;
 }
 
-export const ListEditableHeader: React.FC<Props> = ({ data }) => {
+export const ListEditableHeader: React.FC<Props> = ({ list }) => {
   const isEditing = useBoolean();
   const isLoading = useBoolean();
   const formRef = useRef<ElementRef<"form">>(null);
   const form = useForm<ChangeListTitleSchemaType>({
     resolver: zodResolver(ChangeListTitleSchema),
     defaultValues: {
-      title: data.title,
-      boardId: data.boardId,
-      listId: data.id,
+      title: list.title,
+      boardId: list.boardId,
+      listId: list.id,
     },
   });
 
   const onSubmit = useCallback(
     async (values: ChangeListTitleSchemaType) => {
-      if (values.title !== data.title) {
+      if (values.title !== list.title) {
         isLoading.setTrue();
         await changeListTitle({
           ...values,
@@ -47,7 +47,7 @@ export const ListEditableHeader: React.FC<Props> = ({ data }) => {
       }
       isEditing.setFalse();
     },
-    [data.title, isEditing, isLoading]
+    [list.title, isEditing, isLoading]
   );
 
   useEscape(() => {

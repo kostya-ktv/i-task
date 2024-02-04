@@ -1,0 +1,12 @@
+.cardForm {
+  @apply py-2 space-y-4;
+}
+.cardFormBtnGroup {
+  @apply grid grid-cols-[2fr_1fr] gap-x-2;
+}
+.cardFormAddBtn {
+  @apply h-auto flex px-0 py-2 justify-start w-full gap-x-2 text-muted-foreground text-sm;
+}
+.cardFormAddBtnIcon {
+  @apply h-4 w-4;
+}
