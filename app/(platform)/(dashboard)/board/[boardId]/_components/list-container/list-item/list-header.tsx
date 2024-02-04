@@ -1,4 +1,3 @@
-"use client";
 import { List } from "@prisma/client";
 import styles from "./list-item.module.scss";
 import { ListEditableHeader } from "./list-editable-header";

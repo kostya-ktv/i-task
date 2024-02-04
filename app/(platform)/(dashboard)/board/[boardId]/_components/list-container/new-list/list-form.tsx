@@ -9,21 +9,22 @@ import { useEscape } from "@/hooks";
 import { createList } from "@/actions/board";
 import { Board } from "@prisma/client";
 import { useToast } from "@/components/ui/use-toast";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { CreateListSchema, CreateListSchemaType } from "@/actions/list";
 
 interface Props {
   closeEditing: () => void;
-  boardId: Board["id"];
 }
-export const ListForm: React.FC<Props> = ({ closeEditing, boardId }) => {
+export const ListForm: React.FC<Props> = ({ closeEditing }) => {
+  const params = useParams();
+
   const formRef = useRef<ElementRef<"form">>(null);
   const router = useRouter();
   const { toast } = useToast();
   const form = useForm<CreateListSchemaType>({
     resolver: zodResolver(CreateListSchema),
     defaultValues: {
-      boardId,
+      boardId: params.boardId as Board["id"],
       title: "",
     },
   });
