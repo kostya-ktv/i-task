@@ -9,3 +9,5 @@ export interface Organization {
 
 export type ListWithCards = List & { cards: Card[] };
 export type CardWithList = Card & { list: List };
+
+export type TODO = any;

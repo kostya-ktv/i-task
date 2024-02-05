@@ -8,6 +8,7 @@ import { ListWithCards } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { CardItem } from "../card/card-item";
 import { Draggable, Droppable } from "@hello-pangea/dnd";
+import { DragDropUtil } from "@/lib/dnd";
 
 interface Props {
   index: number;
@@ -24,7 +25,7 @@ export const ListItem: React.FC<Props> = (props) => {
         <ListWrapper ref={provided.innerRef} {...provided.draggableProps}>
           <div className={styles.listItemBox} {...provided.dragHandleProps}>
             <ListHeader onAddCard={isEditing.setTrue} list={list} />
-            <Droppable droppableId={list.id} type="card">
+            <Droppable droppableId={list.id} type={DragDropUtil.Type.card}>
               {(provided) => (
                 <ol
                   ref={provided.innerRef}
