@@ -4,3 +4,4 @@ export * from "./clerk-lazy";
 export * from "./picture-picker/picture-picker";
 export * from "./title-page";
 export * from "./hint";
+export * from "./card-modal/card-modal";

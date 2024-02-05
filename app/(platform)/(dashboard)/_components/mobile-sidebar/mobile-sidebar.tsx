@@ -1,7 +1,6 @@
 "use client";
 
-import { useMounted } from "@/hooks";
-import { useMobileSidebar } from "../hooks";
+import { useMobileSidebar, useMounted } from "@/hooks";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { Button, Sheet, SheetContent } from "@/components/ui";
