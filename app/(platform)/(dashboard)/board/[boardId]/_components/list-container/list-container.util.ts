@@ -14,10 +14,9 @@ export namespace ListContainerUtil {
 
     return result;
   };
-  export const onDragEnd = <T>(
+  export const onDragEnd = (
     result: DropResult,
-    initialData: ListWithCards[],
-    onChange: (data: ListWithCards[]) => void
+    initialData: ListWithCards[]
   ) => {
     const { destination, source, type } = result;
     if (!destination) return;
@@ -36,8 +35,9 @@ export namespace ListContainerUtil {
         initialData,
         source.index,
         destination.index
-      );
-      onChange(items);
+      ).map((el, i) => ({ ...el, order: i }));
+
+      return items;
     }
     // use moves a card
     if (type === DragDropUtil.Type.card) {
@@ -66,7 +66,6 @@ export namespace ListContainerUtil {
         reorderedCards.forEach((card, cardIndex) => (card.order = cardIndex));
 
         sourceList.cards = reorderedCards;
-        
       } else {
         //if user moves the card to another list
         //remove card from source list
@@ -83,7 +82,8 @@ export namespace ListContainerUtil {
           card.order = cardIndex;
         });
       }
-      onChange(newOrderedData);
+
+      return newOrderedData;
     }
   };
 }

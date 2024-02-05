@@ -32,6 +32,6 @@ const BoardIdPage: React.FC<Props> = async ({ params }) => {
     },
   });
 
-  return <ListContainer data={lists} />;
+  return <ListContainer data={lists} boardId={params.boardId} />;
 };
 export default BoardIdPage;

@@ -25,3 +25,17 @@ export const CopyListSchema = z.object({
   listId: z.string(),
 });
 export type CopyListSchemaType = z.infer<typeof CopyListSchema>;
+
+export const UpdateListOrderSchema = z.object({
+  boardId: z.string(),
+  items: z.array(
+    z.object({
+      id: z.string(),
+      title: z.string(),
+      order: z.number(),
+      createdAt: z.date(),
+      updatedAt: z.date(),
+    })
+  ),
+});
+export type UpdateListOrderSchemaType = z.infer<typeof UpdateListOrderSchema>;

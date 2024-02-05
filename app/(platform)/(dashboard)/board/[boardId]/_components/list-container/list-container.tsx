@@ -7,19 +7,29 @@ import { ListItem } from "./list-item/list-item";
 import { DragDropContext, DropResult, Droppable } from "@hello-pangea/dnd";
 import { ListContainerUtil } from "./list-container.util";
 import { DragDropUtil } from "@/lib/dnd";
+import { updateListOrder } from "@/actions/list/update-list-order";
+import { Board } from "@prisma/client";
 
 interface Props {
   data: ListWithCards[];
+  boardId: Board["id"];
 }
 export const ListContainer: React.FC<Props> = (props) => {
-  const { data } = props;
+  const { data, boardId } = props;
   const [orderedData, setOrderedData] = useState<ListWithCards[]>([]);
 
   const handleDragEnd = useCallback(
-    (e: DropResult) => {
-      ListContainerUtil.onDragEnd(e, orderedData, setOrderedData);
+    async (e: DropResult) => {
+      console.log(orderedData);
+      const dragResult = ListContainerUtil.onDragEnd(e, orderedData);
+
+      if (dragResult) {
+        setOrderedData(dragResult);
+        console.log(dragResult);
+        await updateListOrder({ boardId, items: dragResult });
+      }
     },
-    [orderedData]
+    [orderedData, boardId]
   );
 
   useEffect(() => {
