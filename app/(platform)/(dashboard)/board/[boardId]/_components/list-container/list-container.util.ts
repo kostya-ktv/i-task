@@ -1,6 +1,9 @@
+import { updateCardOrder } from "@/actions/card";
+import { updateListOrder } from "@/actions/list/update-list-order";
 import { DragDropUtil } from "@/lib/dnd";
 import { ListWithCards } from "@/lib/types";
 import { DropResult } from "@hello-pangea/dnd";
+import { Board } from "@prisma/client";
 
 export namespace ListContainerUtil {
   export const reorder = <T>(
@@ -14,10 +17,15 @@ export namespace ListContainerUtil {
 
     return result;
   };
-  export const onDragEnd = (
-    result: DropResult,
-    initialData: ListWithCards[]
-  ) => {
+
+  interface OnDragEndProps {
+    result: DropResult;
+    boardId: Board["id"];
+    initialData: ListWithCards[];
+    onChange(list: ListWithCards[]): void;
+  }
+  export const onDragEnd = async (props: OnDragEndProps) => {
+    const { boardId, initialData, onChange, result } = props;
     const { destination, source, type } = result;
     if (!destination) return;
 
@@ -37,7 +45,8 @@ export namespace ListContainerUtil {
         destination.index
       ).map((el, i) => ({ ...el, order: i }));
 
-      return items;
+      onChange(items);
+      await updateListOrder({ boardId, items });
     }
     // use moves a card
     if (type === DragDropUtil.Type.card) {
@@ -66,6 +75,11 @@ export namespace ListContainerUtil {
         reorderedCards.forEach((card, cardIndex) => (card.order = cardIndex));
 
         sourceList.cards = reorderedCards;
+        onChange(newOrderedData);
+        await updateCardOrder({
+          boardId: boardId,
+          items: reorderedCards,
+        });
       } else {
         //if user moves the card to another list
         //remove card from source list
@@ -83,7 +97,11 @@ export namespace ListContainerUtil {
         });
       }
 
-      return newOrderedData;
+      onChange(newOrderedData);
+      await updateCardOrder({
+        boardId: boardId,
+        items: destList.cards,
+      });
     }
   };
 }

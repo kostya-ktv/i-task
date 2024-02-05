@@ -2,29 +2,32 @@
 
 import { UnauthorizedError } from "@/lib/exceptions";
 import { auth } from "@clerk/nextjs";
-import { UpdateListOrderSchemaType } from ".";
+
 import { db } from "@/lib/prisma";
+import { UpdateCardOrderSchemaType } from ".";
 import { revalidatePath } from "next/cache";
 import { APP_ROUTES } from "@/lib/constants";
 
-export const updateListOrder = async (values: UpdateListOrderSchemaType) => {
+export const updateCardOrder = async (values: UpdateCardOrderSchemaType) => {
   const { orgId, userId } = auth();
 
   if (!orgId || !userId) {
     throw new UnauthorizedError();
   }
-  const { items, boardId } = values;
-  const transaction = items.map((list) =>
-    db.list.update({
+  const {boardId, items } = values;
+
+  const transaction = items.map((card) =>
+    db.card.update({
       where: {
-        id: list.id,
-        board: {
-          id: boardId,
-          orgId,
+        id: card.id,
+        list: {
+        
+          board: { orgId },
         },
       },
       data: {
-        order: list.order,
+        order: card.order,
+        listId: card.listId,
       },
     })
   );
@@ -32,6 +35,6 @@ export const updateListOrder = async (values: UpdateListOrderSchemaType) => {
     console.error(JSON.stringify(err));
     return [];
   });
-  revalidatePath(APP_ROUTES.toBoardWithId(boardId))
+  revalidatePath(APP_ROUTES.toBoardWithId(boardId));
   return transactionResult
 };

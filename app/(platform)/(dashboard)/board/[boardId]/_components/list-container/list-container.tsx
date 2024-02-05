@@ -7,7 +7,6 @@ import { ListItem } from "./list-item/list-item";
 import { DragDropContext, DropResult, Droppable } from "@hello-pangea/dnd";
 import { ListContainerUtil } from "./list-container.util";
 import { DragDropUtil } from "@/lib/dnd";
-import { updateListOrder } from "@/actions/list/update-list-order";
 import { Board } from "@prisma/client";
 
 interface Props {
@@ -20,14 +19,12 @@ export const ListContainer: React.FC<Props> = (props) => {
 
   const handleDragEnd = useCallback(
     async (e: DropResult) => {
-      console.log(orderedData);
-      const dragResult = ListContainerUtil.onDragEnd(e, orderedData);
-
-      if (dragResult) {
-        setOrderedData(dragResult);
-        console.log(dragResult);
-        await updateListOrder({ boardId, items: dragResult });
-      }
+      await ListContainerUtil.onDragEnd({
+        result: e,
+        boardId,
+        initialData: orderedData,
+        onChange: setOrderedData,
+      });
     },
     [orderedData, boardId]
   );
