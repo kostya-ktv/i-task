@@ -26,6 +26,7 @@ export async function GET(
         list: {
           select: {
             title: true,
+            boardId: true,
           },
         },
       },

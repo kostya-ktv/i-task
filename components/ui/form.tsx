@@ -141,16 +141,34 @@ const FormDescription = React.forwardRef<
 });
 FormDescription.displayName = "FormDescription";
 
+interface FormMessageActionButton {
+  title: string;
+  onClick: () => void;
+}
 const FormMessage = React.forwardRef<
   HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, children, ...props }, ref) => {
+  React.HTMLAttributes<HTMLParagraphElement> & {
+    actionBtn?: FormMessageActionButton;
+  }
+>(({ className, children, actionBtn, ...props }, ref) => {
   const { error, formMessageId } = useFormField();
   const body = error ? String(error?.message) : children;
 
   if (!body) {
     return null;
   }
+  const ActionButton: React.FC<FormMessageActionButton> = ({
+    onClick,
+    title,
+  }) => (
+    <button
+      type="button"
+      onClick={() => onClick()}
+      className="bg-neutral-100 rounded-lg px-2 border border-neutral-300 text-neutral-600"
+    >
+      {title}
+    </button>
+  );
 
   return (
     <p
@@ -163,6 +181,7 @@ const FormMessage = React.forwardRef<
       {...props}
     >
       {body}
+      {actionBtn && <ActionButton {...actionBtn} />}
     </p>
   );
 });

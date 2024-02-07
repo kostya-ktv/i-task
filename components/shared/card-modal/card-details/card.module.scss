@@ -1,0 +1,42 @@
+.cardContainer {
+  @apply flex items-start gap-x-3 mb-6 w-full;
+}
+.cardTitle {
+  @apply text-xl font-semibold;
+}
+.cardContainerLayoutIcon {
+  @apply h-5 w-5 text-neutral-700 mt-1;
+}
+.cardDetailsForm {
+  @apply grid grid-cols-[30px_1fr] w-full  gap-y-7;
+}
+.cardDetailsFormBtnGroup {
+  @apply flex justify-end gap-x-2;
+}
+.cardDetailsFormTitleInput {
+  @apply h-7  p-0 text-neutral-700 bg-transparent  w-[90%]
+  border-transparent relative  truncate;
+}
+.cardDetailsFormTitleDesc {
+  @apply text-sm text-muted-foreground pl-0.5;
+  span {
+    text-decoration: underline;
+  }
+}
+.cardDescriptionSector {
+  @apply grid grid-cols-[3fr_1fr] items-center gap-2;
+}
+.cardDescriptionTextarea {
+  @apply resize-none bg-neutral-200 font-semibold
+  placeholder:text-black placeholder:font-semibold border-none outline-none
+  focus:bg-white focus:font-normal focus:placeholder:font-normal;
+}
+.cardActionsBox {
+  @apply flex flex-col gap-y-1 h-full;
+}
+.cardActionsBtn {
+  @apply bg-neutral-200 font-semibold flex justify-start;
+}
+.cardActionsIcon {
+  @apply mr-2 h-4 w-4;
+}
