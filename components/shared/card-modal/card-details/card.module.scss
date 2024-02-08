@@ -1,5 +1,5 @@
 .cardContainer {
-  @apply flex items-start gap-x-3 mb-6 w-full;
+  @apply flex flex-col  w-full;
 }
 .cardTitle {
   @apply text-xl font-semibold;

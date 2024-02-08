@@ -7,7 +7,8 @@ import { APP_ROUTES } from "@/lib/constants";
 import { revalidatePath } from "next/cache";
 import { UnauthorizedError } from "@/lib/exceptions";
 import { CreateCardSchemaType } from ".";
-import { Card } from "@prisma/client";
+import { ACTION, Card, ENTITY_TYPE } from "@prisma/client";
+import { createAuditLog } from "@/lib/create-audit-log";
 
 export const createCard = async (
   values: CreateCardSchemaType
@@ -53,6 +54,12 @@ export const createCard = async (
       order: newOrder,
     },
   });
+  await createAuditLog({
+    entityId: card.id,
+    entityTitle: card.title,
+    entityType: ENTITY_TYPE.CARD,
+    action: ACTION.CREATE,
+  }).catch((err) => console.error("CREATE AUDIT LOG", err));
   revalidatePath(APP_ROUTES.toBoardWithId(values.boardId));
   return card;
 };

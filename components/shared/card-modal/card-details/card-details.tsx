@@ -1,9 +1,10 @@
-import { Skeleton } from "@/components/ui";
+import { Separator, Skeleton } from "@/components/ui";
 import { fetcher } from "@/lib/fetcher";
 import { CardWithList } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 import { CardDetailsForm } from "./card-details-form";
 import styles from "./card.module.scss";
+import { CardAuditLogs } from "./card-audit-logs";
 
 const CardSkeleton = () => (
   <div className="flex flex-col relative w-full">
@@ -37,7 +38,15 @@ export const CardDetails: React.FC<{ cardId: string }> = ({ cardId }) => {
   if (isLoading) return <CardSkeleton />;
   return (
     <div className={styles.cardContainer}>
-      {card ? <CardDetailsForm card={card} /> : <p>Card not found</p>}
+      {card ? (
+        <>
+          <CardDetailsForm card={card} />
+          <Separator className="my-3" />
+          <CardAuditLogs cardId={card.id} />
+        </>
+      ) : (
+        <p>Card not found</p>
+      )}
     </div>
   );
 };

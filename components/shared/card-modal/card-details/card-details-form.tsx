@@ -146,7 +146,7 @@ export const CardDetailsForm: React.FC<Props> = ({ card }) => {
           >
             Save changes
           </Button>
-          <DialogClose disabled={isLoading.value}>
+          <DialogClose disabled={isLoading.value} asChild>
             <Button variant="outline" size="sm">
               Close
             </Button>

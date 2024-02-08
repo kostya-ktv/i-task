@@ -10,7 +10,7 @@ export const CardModal = () => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent
         dialogClose={{ disabled: true }}
-        className="max-w-[500px] w-[90vw] min-h-[300px]"
+        className="max-w-[800px] rounded-lg w-[90vw] min-h-[300px]"
       >
         {id ? <CardDetails cardId={id} /> : <p>No id provided</p>}
       </DialogContent>
