@@ -73,62 +73,68 @@ export const CardDetailsForm: React.FC<Props> = ({ card }) => {
         ref={formRef}
         onSubmit={(e) => e.preventDefault()}
       >
-        <LayoutIcon className={styles.cardContainerLayoutIcon} />
-        <FormField
-          name="title"
-          control={form.control}
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input
-                  className={cn(
-                    styles.cardDetailsFormTitleInput,
-                    styles.cardTitle
-                  )}
-                  disabled={isLoading.value}
-                  {...field}
-                />
-              </FormControl>
-
-              <div className={styles.cardDetailsFormTitleDesc}>
-                in list <span>{card.list.title}</span>
-              </div>
-              <FormMessage
-                className="absolute"
-                actionBtn={{
-                  onClick: () => onCancel(),
-                  title: "Cancel",
-                }}
-              />
-            </FormItem>
-          )}
-        />
-        <AlignLeftIcon className={styles.cardContainerLayoutIcon} />
-        <div className={styles.cardDescriptionSector}>
-          <span className={styles.cardTitle}>Description</span>
-          <span className={styles.cardTitle}>Actions</span>
+        <div className="flex gap-x-2">
+          <LayoutIcon className={styles.cardContainerLayoutIcon} />
           <FormField
-            name="description"
+            name="title"
             control={form.control}
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Textarea
-                    rows={6}
-                    placeholder="Add a description..."
-                    className={styles.cardDescriptionTextarea}
+                  <Input
+                    className={cn(
+                      styles.cardDetailsFormTitleInput,
+                      styles.cardTitle
+                    )}
                     disabled={isLoading.value}
                     {...field}
                   />
                 </FormControl>
+
+                <div className={styles.cardDetailsFormTitleDesc}>
+                  in list <span>{card.list.title}</span>
+                </div>
+                <FormMessage
+                  className="absolute"
+                  actionBtn={{
+                    onClick: () => onCancel(),
+                    title: "Cancel",
+                  }}
+                />
               </FormItem>
             )}
           />
+        </div>
 
+        <div className={styles.cardDescriptionSector}>
+          <div className="flex flex-col gap-y-2 ">
+            <div className="flex gap-x-2">
+              <AlignLeftIcon className={styles.cardContainerLayoutIcon} />
+              <span className={styles.cardTitle}>Description</span>{" "}
+            </div>
+
+            <FormField
+              name="description"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Textarea
+                      rows={6}
+                      placeholder="Add a description..."
+                      className={styles.cardDescriptionTextarea}
+                      disabled={isLoading.value}
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+          </div>
           <CardActions card={card} />
         </div>
         {/* mock grid column */}
-        <div />
+
         <div className={styles.cardDetailsFormBtnGroup}>
           <Button
             type="button"

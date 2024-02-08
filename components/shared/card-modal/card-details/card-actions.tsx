@@ -33,7 +33,7 @@ export const CardActions: React.FC<CardActionsProps> = ({ card }) => {
       .catch((err) => console.error(err))
       .finally(() => isLoading.setFalse());
   }, [card, onClose, toast, isLoading]);
-  
+
   const handleCopyCard = useCallback(async () => {
     isLoading.setTrue();
     await copyCard({
@@ -53,6 +53,7 @@ export const CardActions: React.FC<CardActionsProps> = ({ card }) => {
 
   return (
     <div className={styles.cardActionsBox}>
+      <span className={styles.cardTitle}>Actions</span>
       <Button
         type="button"
         size="sm"

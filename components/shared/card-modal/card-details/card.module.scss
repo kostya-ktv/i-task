@@ -8,7 +8,7 @@
   @apply h-5 w-5 text-neutral-700 mt-1;
 }
 .cardDetailsForm {
-  @apply grid grid-cols-[30px_1fr] w-full  gap-y-7;
+  @apply flex flex-col w-full  gap-y-7;
 }
 .cardDetailsFormBtnGroup {
   @apply flex justify-end gap-x-2;
@@ -24,7 +24,7 @@
   }
 }
 .cardDescriptionSector {
-  @apply grid grid-cols-[3fr_1fr] items-center gap-2;
+  @apply grid grid-cols-1 sm:grid-cols-[1fr_min-content] items-center gap-2 w-full;
 }
 .cardDescriptionTextarea {
   @apply resize-none bg-neutral-200 font-semibold
@@ -32,7 +32,7 @@
   focus:bg-white focus:font-normal focus:placeholder:font-normal;
 }
 .cardActionsBox {
-  @apply flex flex-col gap-y-1 h-full;
+  @apply flex flex-col gap-y-2 h-full w-min;
 }
 .cardActionsBtn {
   @apply bg-neutral-200 font-semibold flex justify-start;
