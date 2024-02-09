@@ -9,23 +9,27 @@ interface Props {
   action: ACTION;
 }
 export const createAuditLog = async (props: Props) => {
-  const { orgId } = auth();
-  const user = await currentUser();
-  if (!user || !orgId) {
-    throw new Error("User not found");
+  try {
+    const { orgId } = auth();
+    const user = await currentUser();
+    if (!user || !orgId) {
+      throw new Error("User not found");
+    }
+    const { action, entityId, entityTitle, entityType } = props;
+    const userName = `${user.lastName} ${user.firstName}`.trim();
+    await db.auditLog.create({
+      data: {
+        entityId,
+        action,
+        entityTitle,
+        entityType,
+        userImage: user.imageUrl,
+        userId: user.id,
+        orgId,
+        userName: userName || "User",
+      },
+    });
+  } catch (error) {
+    console.error(error);
   }
-  const { action, entityId, entityTitle, entityType } = props;
-  const userName = `${user.lastName} ${user.firstName}`.trim();
-  await db.auditLog.create({
-    data: {
-      entityId,
-      action,
-      entityTitle,
-      entityType,
-      userImage: user.imageUrl,
-      userId: user.id,
-      orgId,
-      userName: userName || "User",
-    },
-  });
 };

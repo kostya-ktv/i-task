@@ -7,7 +7,8 @@ import { APP_ROUTES } from "@/lib/constants";
 import { revalidatePath } from "next/cache";
 import { UnauthorizedError } from "@/lib/exceptions";
 import { CopyCardSchemaType } from ".";
-import { Card } from "@prisma/client";
+import { ACTION, Card, ENTITY_TYPE } from "@prisma/client";
+import { createAuditLog } from "@/lib/create-audit-log";
 
 export const copyCard = async (values: CopyCardSchemaType): Promise<Card> => {
   const { orgId, userId } = auth();
@@ -39,6 +40,12 @@ export const copyCard = async (values: CopyCardSchemaType): Promise<Card> => {
       description: card.description,
       listId: card.listId,
     },
+  });
+  await createAuditLog({
+    entityTitle: newCard.title,
+    entityId: newCard.id,
+    entityType: ENTITY_TYPE.CARD,
+    action: ACTION.CREATE,
   });
   revalidatePath(APP_ROUTES.toBoardWithId(values.boardId));
   return newCard;

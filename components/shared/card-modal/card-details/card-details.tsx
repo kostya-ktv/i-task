@@ -4,7 +4,7 @@ import { CardWithList } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 import { CardDetailsForm } from "./card-details-form";
 import styles from "./card.module.scss";
-import { CardAuditLogs } from "./card-audit-logs";
+import { CardAuditLogs } from "./card-audit-logs/card-audit-logs";
 
 const CardSkeleton = () => (
   <div className="flex flex-col relative w-full">

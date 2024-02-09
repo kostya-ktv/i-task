@@ -1,0 +1,15 @@
+.cardAuditLogs {
+  @apply flex flex-col gap-y-2;
+}
+.cardAuditLogsTitleBox {
+  @apply flex gap-x-2 items-center mb-2;
+}
+.cardAuditLogsTitle {
+  @apply text-sm font-semibold;
+}
+.cardAuditLogsTitleIcon {
+  @apply w-4 h-4;
+}
+.cardAuditLogContainer {
+  @apply grid grid-cols-[30px_1fr] items-center;
+}

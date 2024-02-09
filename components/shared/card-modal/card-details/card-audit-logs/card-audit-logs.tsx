@@ -1,5 +1,6 @@
 "use client";
 
+import styles from "./card-audit-logs.module.scss";
 import { fetcher } from "@/lib/fetcher";
 import { cn } from "@/lib/utils";
 import { ACTION, AuditLog, Card } from "@prisma/client";
@@ -7,22 +8,31 @@ import { useQuery } from "@tanstack/react-query";
 import { ActivityIcon } from "lucide-react";
 import Image from "next/image";
 import { format } from "date-fns";
+import { Skeleton } from "@/components/ui";
+
+const CardAuditLogSkeleton = () => (
+  <div className={styles.cardAuditLogContainer}>
+    <Skeleton className="w-5 h-5 rounded-full" />
+    <Skeleton className="w-[170px] h-10 " />
+  </div>
+);
 
 export const CardAuditLogs: React.FC<{ cardId: Card["id"] }> = ({ cardId }) => {
   const { data: logs, isLoading } = useQuery<AuditLog[]>({
     queryKey: ["card-logs", cardId],
     queryFn: () => fetcher(`/api/cards/${cardId}/logs`),
   });
-  console.log(logs);
+
   return (
-    <div className="flex flex-col gap-y-2">
-      <div className="flex gap-x-2 items-center mb-2">
-        <ActivityIcon className="h-4 w-4" />
-        <span className="text-sm font-semibold">Activity</span>
+    <div className={styles.cardAuditLogs}>
+      <div className={styles.cardAuditLogsTitleBox}>
+        <ActivityIcon className={styles.cardAuditLogsTitleIcon} />
+        <span className={styles.cardAuditLogsTitle}>Activity</span>
       </div>
 
-      {logs?.map((log, logIndex) => (
-        <div key={log.id} className="grid grid-cols-[30px_1fr] items-center">
+      {isLoading && <CardAuditLogSkeleton />}
+      {logs?.map((log) => (
+        <div key={log.id} className={styles.cardAuditLogContainer}>
           <Image
             width={20}
             height={20}
