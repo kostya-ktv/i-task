@@ -19,7 +19,7 @@ import {
 import { CardWithList } from "@/lib/types";
 import { ElementRef, useCallback, useRef } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { AlignLeftIcon, LayoutIcon } from "lucide-react";
+import { AlignLeftIcon, CheckCheckIcon, LayoutIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CardActions } from "./card-actions";
 
@@ -33,7 +33,7 @@ export const CardDetailsForm: React.FC<Props> = ({ card }) => {
   const queryClient = useQueryClient();
   const form = useForm<UpdateCardDetailsSchemaType>({
     resolver: zodResolver(UpdateCardDetailsSchema),
-    defaultValues: {
+    values: {
       title: card.title,
       cardId: card.id,
       listId: card.listId,
@@ -42,6 +42,8 @@ export const CardDetailsForm: React.FC<Props> = ({ card }) => {
     },
   });
   const isDirty = form.formState.isDirty;
+  const isSubmitSuccessful = form.formState.isSubmitSuccessful;
+  const isTouched = !!Object.keys(form.formState.touchedFields).length;
   const onCancel = form.reset;
 
   const onSubmit = useCallback(
@@ -54,8 +56,12 @@ export const CardDetailsForm: React.FC<Props> = ({ card }) => {
         await updateCardDetails({ ...values })
           .catch(console.error)
           .then(() => {
+            form.reset();
             queryClient.invalidateQueries({
               queryKey: ["card", card.id],
+            });
+            queryClient.invalidateQueries({
+              queryKey: ["card-logs", card.id],
             });
           })
           .finally(() => {
@@ -63,7 +69,7 @@ export const CardDetailsForm: React.FC<Props> = ({ card }) => {
           });
       }
     },
-    [card, isLoading, queryClient]
+    [card, form, isLoading, queryClient]
   );
 
   return (
@@ -133,19 +139,26 @@ export const CardDetailsForm: React.FC<Props> = ({ card }) => {
           </div>
           <CardActions card={card} />
         </div>
-        {/* mock grid column */}
 
         <div className={styles.cardDetailsFormBtnGroup}>
-          <Button
-            type="button"
-            variant="green"
-            onClick={form.handleSubmit(onSubmit)}
-            isLoading={isLoading.value}
-            size="sm"
-            disabled={!isDirty}
-          >
-            Save changes
-          </Button>
+          <div className="flex gap-x-2 items-center">
+            {isSubmitSuccessful && !isTouched && !isDirty && (
+              <div className="flex gap-x-1 items-center text-xs text-green-500">
+                Saved
+                <CheckCheckIcon className={styles.cardActionsIcon} />
+              </div>
+            )}
+            <Button
+              type="button"
+              variant="green"
+              onClick={form.handleSubmit(onSubmit)}
+              isLoading={isLoading.value}
+              size="sm"
+              disabled={!isDirty}
+            >
+              Save changes
+            </Button>
+          </div>
           <DialogClose disabled={isLoading.value} asChild>
             <Button variant="outline" size="sm">
               Close
