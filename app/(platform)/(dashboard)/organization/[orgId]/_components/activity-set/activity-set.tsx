@@ -11,6 +11,7 @@ const ActivitySet = async () => {
 
   return (
     <div className="flex flex-col gap-y-2 mt-4">
+      {!logs.length && <span>No activity yet</span>}
       {logs.map((log) => (
         <AuditItem log={log} key={log.id} />
       ))}

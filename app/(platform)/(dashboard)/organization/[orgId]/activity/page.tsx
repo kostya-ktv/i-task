@@ -15,7 +15,6 @@ const ActivityLogs = dynamic(
           ))}
       </div>
     ),
-    ssr: false,
   }
 );
 const ActivityPage = () => {
