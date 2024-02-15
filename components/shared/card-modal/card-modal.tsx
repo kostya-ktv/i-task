@@ -9,6 +9,7 @@ export const CardModal = () => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent
+        onInteractOutside={(e) => e.preventDefault()}
         dialogClose={{ disabled: true }}
         className="max-w-[800px] rounded-lg w-[90vw] min-h-[300px]"
       >

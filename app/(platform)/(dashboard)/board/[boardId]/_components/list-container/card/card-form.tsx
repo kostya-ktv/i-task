@@ -50,7 +50,7 @@ export const CardForm: React.FC<Props> = (props) => {
       setIsLoading(true);
       await createCard(values)
         .then(() => {
-          closeEditing();
+          onCancel();
           toast({
             title: "New card created",
           });
@@ -59,7 +59,7 @@ export const CardForm: React.FC<Props> = (props) => {
           setIsLoading(false);
         });
     },
-    [closeEditing, toast]
+    [onCancel, toast]
   );
 
   useEscape(onCancel);

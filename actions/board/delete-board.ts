@@ -1,6 +1,7 @@
 "use server";
 
 import { APP_ROUTES } from "@/lib/constants";
+import { decreaseAvailableCount } from "@/actions/org-limit";
 import { db } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs";
 import { Board } from "@prisma/client";
@@ -16,6 +17,7 @@ export const deleteBoard = async (boardId: Board["id"]) => {
       id: boardId,
     },
   });
+  await decreaseAvailableCount();
   revalidatePath(APP_ROUTES.toBoardWithId(boardId));
 
   redirect(APP_ROUTES.toOrgWithId(orgId));

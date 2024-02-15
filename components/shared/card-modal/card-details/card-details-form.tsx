@@ -79,13 +79,13 @@ export const CardDetailsForm: React.FC<Props> = ({ card }) => {
         ref={formRef}
         onSubmit={(e) => e.preventDefault()}
       >
-        <div className="flex gap-x-2">
+        <div className="flex gap-x-2 w-full">
           <LayoutIcon className={styles.cardContainerLayoutIcon} />
           <FormField
             name="title"
             control={form.control}
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="w-full">
                 <FormControl>
                   <Input
                     className={cn(

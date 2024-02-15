@@ -1,6 +1,6 @@
 import { auth } from "@clerk/nextjs";
-import { db } from "./prisma";
-import { BOARD_LIMIT } from "./boards";
+import { db } from "../../lib/prisma";
+import { BOARD_LIMIT } from "../../lib/boards";
 
 export const incrementAvailableCount = async () => {
   const { orgId } = auth();
@@ -81,5 +81,5 @@ export const getAvailableCount = async () => {
     where: { orgId },
   });
 
-  return orgLimit ? orgLimit.count : 0;
+  return orgLimit?.count || 0;
 };

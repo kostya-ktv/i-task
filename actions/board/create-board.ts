@@ -6,7 +6,10 @@ import { APP_ROUTES } from "@/lib/constants";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/prisma";
 import { CreateBoardSchemaType } from ".";
-import { hasAvailableCount, incrementAvailableCount } from "@/lib/org-limit";
+import {
+  hasAvailableCount,
+  incrementAvailableCount,
+} from "@/actions/org-limit";
 
 export const createBoard = async (
   { title, image }: CreateBoardSchemaType,
@@ -14,19 +17,19 @@ export const createBoard = async (
 ): Promise<Board> => {
   // Checking if user authorized
   const { userId, orgId } = auth();
-  if (!userId || !orgId) throw Error("Unauthorized");
+  if (!userId || !orgId) throw new Error("Unauthorized");
 
   const canCreate = await hasAvailableCount();
 
   if (!canCreate) {
-    throw Error("You have reached limit");
+    throw new Error("You have reached limit");
   }
   // Parse image value to variables and check is not empty
   const imageSet = image.split("|");
   const isImageSetValid = imageSet.every((el) => Boolean(el));
   if (!isImageSetValid) {
     console.error(imageSet);
-    throw Error("Missing image details to create Board");
+    throw new Error("Missing image details to create Board");
   }
 
   const [imageId, imageThumbUrl, imageFullUrl, imageLinkHTML, imageUserName] =

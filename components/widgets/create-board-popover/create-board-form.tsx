@@ -47,7 +47,7 @@ export const CreateBoardForm = () => {
       .catch((err) => {
         toast({
           title: "Error create board",
-          description: JSON.stringify(err),
+          description: err.message,
           variant: "destructive",
         });
       });
