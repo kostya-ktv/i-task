@@ -67,7 +67,6 @@ export const BoardOptions: React.FC<Props> = ({ board }) => {
           </PopoverClose>
         </div>
         <Button
-          isLoading={isLoading}
           disabled={isLoading}
           onClick={() => router.push(APP_ROUTES.toOrgWithId(orgId))}
           variant="ghost"
