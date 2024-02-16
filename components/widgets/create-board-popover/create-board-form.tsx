@@ -19,8 +19,10 @@ import { useToast } from "@/components/ui/use-toast";
 import { useForm, zodResolver } from "@/lib/forms";
 import { XIcon } from "lucide-react";
 import { useRef } from "react";
+import { useProModal } from "@/hooks";
 
 export const CreateBoardForm = () => {
+  const proModal = useProModal();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const { toast } = useToast();
   const form = useForm<CreateBoardSchemaType>({
@@ -45,6 +47,7 @@ export const CreateBoardForm = () => {
         form.reset();
       })
       .catch((err) => {
+        proModal.onOpen();
         toast({
           title: "Error create board",
           description: err.message,

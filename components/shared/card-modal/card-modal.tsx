@@ -1,7 +1,7 @@
 "use client";
-import { useCardModal } from "@/hooks/use-card-modal";
 import { Dialog, DialogContent } from "@/components/ui";
 import { CardDetails } from "./card-details/card-details";
+import { useCardModal } from "@/hooks";
 
 export const CardModal = () => {
   const { id, isOpen, onClose } = useCardModal();
